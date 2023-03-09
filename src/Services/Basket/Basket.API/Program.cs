@@ -1,4 +1,6 @@
+using Basket.API.GrpcServices;
 using Basket.API.Repositories;
+using Discount.Grpcs.Protos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 
@@ -19,8 +21,11 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Basket.API", Version = "v1" });
 });
 
-builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>
+                (o => o.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]));
+builder.Services.AddScoped<DiscountGrpcService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

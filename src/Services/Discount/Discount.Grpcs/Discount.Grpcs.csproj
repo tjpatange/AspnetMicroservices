@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+<ItemGroup>
+    <None Remove="Protos\discount.proto" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Npgsql" />
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Configurations>Release;Debug</Configurations>
+    <UserSecretsId>09355ed8-c74c-40b1-99ed-24c11847fd76</UserSecretsId>
+    <DockerComposeProjectPath>../../../docker-compose.dcproj</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' " />
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.25.0" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="Npgsql" Version="6.0.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Protos\discount.proto" />
+    <None Remove="AutoMapper" />
+  </ItemGroup>
+  <ItemGroup>
+   <Protobuf Include="Protos\discount.proto" GrpcServices="Server" />
+  </ItemGroup>
+</Project>

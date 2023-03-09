@@ -11,6 +11,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.23.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,9 +19,15 @@
     <None Remove="Repositories\" />
     <None Remove="Newtonsoft.Json" />
     <None Remove="Controllers\" />
+    <None Remove="Grpc.AspNetCore" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
     <Folder Include="Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="..\..\Discount\Discount.Grpcs\Protos\discount.proto" GrpcServices="Client">
+      <Link>Protos\discount.proto</Link>
+    </Protobuf>
   </ItemGroup>
 </Project>
